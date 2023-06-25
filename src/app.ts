@@ -12,3 +12,11 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 export default app;
+
+/*
+1. Interface
+2. Model
+3. Route
+4. Controller 
+5. Service
+*/
