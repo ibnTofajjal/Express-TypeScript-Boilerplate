@@ -7,19 +7,26 @@ export const createUserController = async (
   res: Response,
   next: NextFunction
 ) => {
-  // Take the data from the request body
-  const data = req.body;
+  try {
+    // Take the data from the request body
+    const data = req.body;
 
-  // Create a user in the database -> Service
-  const user = await createUserService(data);
+    // Create a user in the database -> Service
+    const user = await createUserService(data);
 
-  // Send the response
-  res.status(201).json({
-    message: "User created successfully",
-    status: "success",
-    data: user,
-  });
-
+    // Send the response
+    res.status(201).json({
+      message: "User created successfully",
+      status: "success",
+      data: user,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Something went wrong",
+      status: "error",
+      data: error,
+    });
+  }
   // Call the next function
   next();
 };
