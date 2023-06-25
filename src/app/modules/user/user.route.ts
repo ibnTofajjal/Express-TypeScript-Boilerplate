@@ -3,6 +3,8 @@ import {
   createUserController,
   getAllUsersController,
   getSingleUserController,
+  deleteSingleUserController,
+  updateSingleUserController,
 } from "./user.controller";
 const router = express.Router();
 
@@ -14,5 +16,11 @@ router.get("/", getAllUsersController);
 
 // Get Single User By Username/Id
 router.get("/:id", getSingleUserController);
+
+// Update Single User By Username/Id
+router.patch("/:id", updateSingleUserController);
+
+// Delete Single User By Username/Id
+router.delete("/:id", deleteSingleUserController);
 
 export default router;

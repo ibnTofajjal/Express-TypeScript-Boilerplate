@@ -19,10 +19,27 @@ export const getAllUsersService = async () => {
   return users;
 };
 
-// Get Single user by Usernam/id
+// Get Single user by Username/id
 export const getSingleUserService = async (
   payload: string
 ): Promise<IUser | null> => {
   const user = await UserModel.findOne({ username: payload });
   return user;
+};
+
+// Update Single User by Username/id
+export const updateSingleUserService = async (
+  payload: string,
+  data: IUser
+): Promise<IUser | null> => {
+  const user = await UserModel.updateOne({ username: payload }, data);
+  return user.modifiedCount === 1 ? data : null;
+};
+
+// Delete signle User by Username/id
+export const deleteSingleUserService = async (
+  payload: string
+): Promise<boolean> => {
+  const user = await UserModel.deleteOne({ username: payload });
+  return user.deletedCount === 1 ? true : false;
 };
